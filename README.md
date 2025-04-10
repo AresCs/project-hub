@@ -1,54 +1,144 @@
-# React + TypeScript + Vite
+# 🎧 Project Hub – Media Downloader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack media downloader that supports downloading audio from **Spotify** and **YouTube** using a sleek React frontend and separate Flask-powered backends.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 Features
 
-## Expanding the ESLint configuration
+- 🎵 **Spotify Downloader**
+  - Download tracks by URL
+  - MP3 conversion
+  - Auto cleanup after download
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📺 **YouTube Downloader**
+  - Download audio from YouTube videos
+  - Uses `yt-dlp` under the hood
+  - Smart error handling and cleanup
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- 💻 **React Frontend**
+  - Modern UI with real-time feedback
+  - Logo branding per platform
+  - Shared design system between platforms
+
+- ⚙️ **Flask Backends (2 servers)**
+  - `spotify_downloader.py` runs on **port 5000**
+  - `youtube_downloader.py` runs on **port 5001**
+  - CORS configured for frontend at `http://localhost:5173`
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/yourusername/project-hub.git
+cd project-hub
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+#### Frontend
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+cd src
+npm install
 ```
+
+#### Backend
+
+```bash
+pip install -r requirements.txt
+```
+
+Make sure `yt-dlp` is installed and available globally:
+
+```bash
+pip install yt-dlp
+```
+
+---
+
+## 🔧 Run the App
+
+### Start the Frontend (Vite)
+
+```bash
+cd src
+npm run dev
+```
+
+This starts the React frontend on:  
+📍 `http://localhost:5173`
+
+### Start Spotify Backend
+
+```bash
+python scripts/spotify_downloader.py
+```
+
+Runs on: `http://localhost:5000`
+
+### Start YouTube Backend
+
+```bash
+python scripts/youtube_downloader.py
+```
+
+Runs on: `http://localhost:5001`
+
+✅ Both servers support CORS and respond to `/api/download/...` routes.
+
+---
+
+## 📁 Folder Structure
+
+```
+├── scripts/
+│   ├── spotify_downloader.py       # Flask app for Spotify
+│   ├── youtube_downloader.py       # Flask app for YouTube
+│
+├── src/
+│   ├── pages/
+│   │   ├── Spotify.tsx             # Spotify UI logic
+│   │   ├── Youtube.tsx             # YouTube UI logic
+│   │
+│   ├── assets/logos/               # Platform logos
+│   ├── components/                 # Reusable components (e.g. ProjectCard)
+│   ├── App.tsx / main.tsx
+│   └── ...
+│
+├── temp/                           # Downloaded files (auto cleaned)
+```
+
+---
+
+## 🧼 File Cleanup
+
+Both backends automatically delete downloaded files after:
+
+- Successful download delivery
+- 5-second delay to ensure download completes
+- Prevents storage bloat
+
+---
+
+## 💡 Future Ideas
+
+- 🎶 Playlist support
+- 🧠 Auto URL detection (YouTube vs Spotify)
+- 🔐 OAuth for private playlists
+- ☁️ Cloud deployment with one unified backend
+
+---
+
+## 📜 License
+
+MIT – Use freely, modify with flair.
+
+---
+
+## 🙌 Contributing
+
+Pull requests are welcome. Let’s build more tools like this!
