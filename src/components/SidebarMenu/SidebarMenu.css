@@ -1,0 +1,72 @@
+.hamburger {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.75rem;
+    background: transparent;
+    border: none;
+    color: inherit;
+    z-index: 1001;
+    cursor: pointer;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 240px;
+    height: 100%;
+    background-color: #1a1a1a;
+    padding: 2rem 1rem;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.2);
+    z-index: 1002;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: left 0.3s ease;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  .sidebar button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .sidebar button:hover {
+    background: #555;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1000;
+  }
+  
+  /* Light mode overrides */
+  .light-mode .sidebar {
+    background-color: #f4f4f4;
+    color: #111;
+  }
+  
+  .light-mode .sidebar button {
+    background-color: #ddd;
+    color: #111;
+  }
+  
+  .light-mode .sidebar button:hover {
+    background-color: #ccc;
+  }
+  
