@@ -1,5 +1,6 @@
 import ProjectCard from "../components/ProjectCard/ProjectCard";
 import { useNavigate } from "react-router-dom";
+import projectHubLogo from "../assets/logos/Project_Hub_Logo.png";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ const Home = () => {
   return (
     <div className="page-center">
       <div className="container">
-        <h1>🎛️ Project Hub</h1>
+        <h1>{<img src={projectHubLogo} alt="Spotify Logo" style={{ width: 32, height: 32 }} />} Project Hub</h1>
         <div className="project-grid">
           <ProjectCard
             title="Media Downloader"

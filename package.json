@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "backend": "python scripts/run_all_backends.py",
+    "backends": "python scripts/run_all_backends.py",
+    "spotify-backend": "python scripts/spotify_downloader.py",
     "yt-backend": "python scripts/youtube_downloader.py"
   },
   "dependencies": {
